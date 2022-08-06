@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   has_secure_password
   belongs_to :city
   has_many :gossips
@@ -11,6 +10,8 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :password_digest, presence: true
 
-    # City.find_or_create_by_name(city.name)
-  # end
+  def remember(remember_token)
+    remember_digest = BCrypt::Password.create(remember_token)
+    update(remember_digest: remember_digest)
+  end
 end
