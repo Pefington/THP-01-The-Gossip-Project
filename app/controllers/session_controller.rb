@@ -19,7 +19,7 @@ class SessionController < ApplicationController
   def destroy
     log_out(current_user)
     @gossips = Gossip.all
-    flash.now[:info] = 'You logged out successfully'
+    flash[:info] = 'You logged out successfully'
     redirect_to :home
   end
 end

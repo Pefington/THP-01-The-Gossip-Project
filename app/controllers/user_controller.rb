@@ -13,7 +13,7 @@ class UserController < ApplicationController
       city: City.find_or_create_by(name: params[:city])
     )
     if @user.save
-      flash.now[:success] = 'User successfully created!'
+      flash[:success] = 'User successfully created!'
       redirect_to home_path
     else
       flash.now[:alert] = 'Invalid email/password combination.'
@@ -44,7 +44,7 @@ class UserController < ApplicationController
       age: params[:age],
       description: params[:description]
     )
-      flash.now[:success] = 'User successfully updated!'
+      flash[:success] = 'User successfully updated!'
       redirect_to user_path(@user.id)
     else
       @user.errors.full_messages.each { |m| flash.now[:alert] = m }
