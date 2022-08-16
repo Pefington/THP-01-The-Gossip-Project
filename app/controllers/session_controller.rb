@@ -5,10 +5,10 @@ class SessionController < ApplicationController
     user = User.find_by(email: params[:session_email])
 
     if user&.authenticate(params[:session_password])
-      session[:user_id] = user.id
+      log_in(user) # defined in session_helper.rb
+      remember(user)
       @gossips = Gossip.all
       @likes = Like.all
-      # flash.now[:success] =
       redirect_to :home, success: "Welcome #{user.first_name}. You are now successfully logged in."
     else
       flash.now[:alert] = 'Invalid email/password combination'
@@ -17,9 +17,9 @@ class SessionController < ApplicationController
   end
 
   def destroy
-    session.delete(:user_id)
+    log_out(current_user)
     @gossips = Gossip.all
-    flash.now[:info] = 'You logged out successfully'
+    flash[:info] = 'You logged out successfully'
     redirect_to :home
   end
 end

@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2022_08_04_133214) do
     t.string "last_name"
     t.integer "age"
     t.string "description"
+    t.string "remember_digest"
     t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

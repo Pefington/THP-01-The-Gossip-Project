@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :last_name
       t.integer :age
       t.string :description
+      t.string :remember_digest
 
       t.belongs_to :city, index: true
       t.timestamps
